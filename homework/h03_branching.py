@@ -16,7 +16,15 @@ def hw_07(month):
         hw_07(0) is None
         hw_07(13) is None
     """
-    raise NotImplementedError("Реализуйте hw_07")
+    if month in (12, 1, 2):
+        return "зима"
+    if month in (3, 4, 5):
+        return "весна"
+    if month in (6, 7, 8):
+        return "лето"
+    if month in (9, 10, 11):
+        return "осень"
+    return None
 
 
 def hw_08(p1, p2):
@@ -32,7 +40,16 @@ def hw_08(p1, p2):
         hw_08("бумага", "камень") == "игрок 1"
         hw_08("бумага", "бумага") == "ничья"
     """
-    raise NotImplementedError("Реализуйте hw_08")
+    if p1 == p2:
+        return "ничья"
+    beats = {
+        "камень": "ножницы",
+        "ножницы": "бумага",
+        "бумага": "камень",
+    }
+    if beats[p1] == p2:
+        return "игрок 1"
+    return "игрок 2"
 
 
 def hw_09(a, b, c):
@@ -48,7 +65,9 @@ def hw_09(a, b, c):
         hw_09(1, 2, 3) == False   # 1 + 2 равно 3, не больше
         hw_09(0, 1, 1) == False
     """
-    raise NotImplementedError("Реализуйте hw_09")
+    if a <= 0 or b <= 0 or c <= 0:
+        return False
+    return a + b > c and a + c > b and b + c > a
 
 
 def hw_10(n):
@@ -68,4 +87,12 @@ def hw_10(n):
         hw_10(112) == "лет"
         hw_10(0) == "лет"
     """
-    raise NotImplementedError("Реализуйте hw_10")
+    last_two = n % 100
+    last_digit = n % 10
+    if 11 <= last_two <= 14:
+        return "лет"
+    if last_digit == 1:
+        return "год"
+    if last_digit in (2, 3, 4):
+        return "года"
+    return "лет"

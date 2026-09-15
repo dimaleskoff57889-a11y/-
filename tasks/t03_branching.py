@@ -11,7 +11,11 @@ def task_13(n):
         task_13(-3) == -1
         task_13(0) == 0
     """
-    raise NotImplementedError("Реализуйте task_13")
+    if n > 0:
+        return 1
+    if n < 0:
+        return -1
+    return 0
 
 
 def task_14(score):
@@ -29,7 +33,13 @@ def task_14(score):
         task_14(60) == "удовлетворительно"
         task_14(59) == "неудовлетворительно"
     """
-    raise NotImplementedError("Реализуйте task_14")
+    if score >= 90:
+        return "отлично"
+    if score >= 75:
+        return "хорошо"
+    if score >= 60:
+        return "удовлетворительно"
+    return "неудовлетворительно"
 
 
 def task_15(age, is_citizen):
@@ -44,7 +54,7 @@ def task_15(age, is_citizen):
         task_15(17, True) == False
         task_15(18, True) == True
     """
-    raise NotImplementedError("Реализуйте task_15")
+    return age >= 18 and is_citizen
 
 
 def task_16(password):
@@ -62,7 +72,9 @@ def task_16(password):
         task_16("StrongPass") == False   # нет цифры
         task_16("Str1") == False         # короткий
     """
-    raise NotImplementedError("Реализуйте task_16")
+    has_upper = any(ch.isupper() for ch in password)
+    has_digit = any(ch.isdigit() for ch in password)
+    return len(password) >= 8 and has_upper and has_digit
 
 
 def task_17(year):
@@ -77,7 +89,7 @@ def task_17(year):
         task_17(1900) == False   # делится на 100, но не на 400
         task_17(2000) == True    # делится на 400
     """
-    raise NotImplementedError("Реализуйте task_17")
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 
 def task_18(op, a, b):
@@ -96,4 +108,15 @@ def task_18(op, a, b):
         task_18("/", 5, 0) is None
         task_18("^", 2, 3) is None
     """
-    raise NotImplementedError("Реализуйте task_18")
+    if op == "/" and b == 0:
+        return None
+    operations = {
+        "+": lambda a, b: a + b,
+        "-": lambda a, b: a - b,
+        "*": lambda a, b: a * b,
+        "/": lambda a, b: a / b,
+    }
+    func = operations.get(op)
+    if func is None:
+        return None
+    return func(a, b)
